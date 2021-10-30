@@ -7,7 +7,7 @@ public enum MapDirection {
             case NORTH: return "Północ";
             case EAST: return "Wschód";
             case SOUTH: return "Południe";
-            case WEST: return "Zachów";
+            case WEST: return "Zachód";
         }
         return "";
     }
