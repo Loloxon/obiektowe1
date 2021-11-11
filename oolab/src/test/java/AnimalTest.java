@@ -1,18 +1,16 @@
-import agh.ics.oop.MapDirection;
-import agh.ics.oop.MoveDirection;
-import agh.ics.oop.Vector2d;
-import agh.ics.oop.Animal;
-import agh.ics.oop.OptionsParser;
+import agh.ics.oop.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
-
 import javax.swing.text.html.Option;
 import java.util.ArrayList;
-
+import java.util.List;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AnimalTest {
-    Animal a = new Animal();
+    /*
+    RectangularMap map = new RectangularMap(5,5);
     Vector2d vec1 = new Vector2d(4,4);
+    Animal a = new Animal(map, vec1);
     @Test
     public void DirectionTest(){
         a.setPos(vec1);
@@ -52,5 +50,25 @@ public class AnimalTest {
         s[2]="r";
         s[3]="l";
         Assertions.assertEquals(OptionsParser.parse(s),ans);
+    }*/
+    @Test
+    public void AnimalsTest(){
+        ArrayList<MoveDirection> directions = OptionsParser.parse(new String[]{"f", "b", "r", "l", "f", "f", "r", "r", "f", "f", "b", "f", "f", "b", "f", "l", "f", "f", "r"});
+        RectangularMap mapTest = new RectangularMap(8, 6);
+        Vector2d[] positions = { new Vector2d(2,2), new Vector2d(3,4), new Vector2d(6,1), new Vector2d(2,2)};
+        IEngine engine = new SimulationEngine(directions, mapTest, positions);
+
+        List<Animal> testObjects = mapTest.getA();
+        assertEquals(testObjects.size(), 3);
+
+        engine.run();
+
+        assertEquals(testObjects.get(0).getPos(), new Vector2d(2,5));
+        assertEquals(testObjects.get(1).getPos(), new Vector2d(3,4));
+        assertEquals(testObjects.get(2).getPos(), new Vector2d(8,1));
+
+        assertEquals(testObjects.get(0).getDir(), MapDirection.NORTH);
+        assertEquals(testObjects.get(1).getDir(), MapDirection.EAST);
+        assertEquals(testObjects.get(2).getDir(), MapDirection.EAST);
     }
 }
