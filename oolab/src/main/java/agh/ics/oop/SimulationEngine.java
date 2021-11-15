@@ -21,14 +21,14 @@ public class SimulationEngine implements IEngine{
     @Override
     public void run(){
         int id=0;
-        RectangularMap rmap = (RectangularMap) map;
+        GrassField rmap = (GrassField) map;
         List<Animal> A = rmap.getA();
         System.out.println(rmap);
         for(MoveDirection move:moves){
             A.get(id).move(move);
-//            System.out.println(move);
-//            System.out.println(id);
-//            System.out.println(rmap);
+            System.out.println(move);
+            System.out.println(id);
+            System.out.println(rmap);
             id+=1;
             id%=A.size();
         }

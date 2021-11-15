@@ -6,22 +6,10 @@ public class OptionsParser {
         ArrayList<MoveDirection>A=new ArrayList<>();
         for(String arg:args){
             switch (arg) {
-                case "f":
-                case "forward":
-                    A.add(MoveDirection.FORWARD);
-                    break;
-                case "b":
-                case "backward":
-                    A.add(MoveDirection.BACKWARD);
-                    break;
-                case "r":
-                case "right":
-                    A.add(MoveDirection.RIGHT);
-                    break;
-                case "l":
-                case "left":
-                    A.add(MoveDirection.LEFT);
-                    break;
+                case "f", "forward" -> A.add(MoveDirection.FORWARD);
+                case "b", "backward" -> A.add(MoveDirection.BACKWARD);
+                case "r", "right" -> A.add(MoveDirection.RIGHT);
+                case "l", "left" -> A.add(MoveDirection.LEFT);
             }
         }
         return A;

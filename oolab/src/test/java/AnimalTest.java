@@ -54,7 +54,7 @@ public class AnimalTest {
     @Test
     public void AnimalsTest(){
         ArrayList<MoveDirection> directions = OptionsParser.parse(new String[]{"f", "b", "r", "l", "f", "f", "r", "r", "f", "f", "b", "f", "f", "b", "f", "l", "f", "f", "r"});
-        RectangularMap mapTest = new RectangularMap(8, 6);
+        RectangularMap mapTest = new RectangularMap();
         Vector2d[] positions = { new Vector2d(2,2), new Vector2d(3,4), new Vector2d(6,1), new Vector2d(2,2)};
         IEngine engine = new SimulationEngine(directions, mapTest, positions);
 
@@ -63,9 +63,9 @@ public class AnimalTest {
 
         engine.run();
 
-        assertEquals(testObjects.get(0).getPos(), new Vector2d(2,5));
-        assertEquals(testObjects.get(1).getPos(), new Vector2d(3,4));
-        assertEquals(testObjects.get(2).getPos(), new Vector2d(8,1));
+        assertEquals(testObjects.get(0).getPosition(), new Vector2d(2,5));
+        assertEquals(testObjects.get(1).getPosition(), new Vector2d(3,4));
+        assertEquals(testObjects.get(2).getPosition(), new Vector2d(8,1));
 
         assertEquals(testObjects.get(0).getDir(), MapDirection.NORTH);
         assertEquals(testObjects.get(1).getDir(), MapDirection.EAST);

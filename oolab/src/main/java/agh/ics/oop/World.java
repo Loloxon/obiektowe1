@@ -16,12 +16,29 @@ public class World {
 //            System.out.println(rmap);
 //        }
 
+//        ArrayList<MoveDirection> directions = new OptionsParser().parse(args);
+//        IWorldMap map = new RectangularMap(10, 5);
+//        Vector2d[] positions = { new Vector2d(2,2), new Vector2d(3,4) };
+//        IEngine engine = new SimulationEngine(directions, map, positions);
+//        engine.run();
+
+//
+//        IWorldMap rmap = new RectangularMap();
+//        Animal an1 = new Animal(rmap, new Vector2d(2,3));
+//        rmap.place(an1);
+//        Animal an2 = new Animal(rmap, new Vector2d(7,6));
+//        rmap.place(an2);
+//        IWorldMap gf = new GrassField(10);
+//        gf.place(an1);
+//        System.out.println(rmap);
+//        System.out.println(gf);
+
+
         ArrayList<MoveDirection> directions = new OptionsParser().parse(args);
-        IWorldMap map = new RectangularMap(10, 5);
+        IWorldMap map = new GrassField(10);
         Vector2d[] positions = { new Vector2d(2,2), new Vector2d(3,4) };
         IEngine engine = new SimulationEngine(directions, map, positions);
         engine.run();
-
     }
 }
 
