@@ -1,11 +1,23 @@
 package agh.ics.oop;
 import java.lang.Math;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class GrassField extends AbstractWorldMap{
     private int grassNo;
+    protected Map<Vector2d, Animal> animals = new HashMap<>();
+    protected List<Grass> G = new ArrayList<>();
+    protected List<Animal> A = new ArrayList<>();
+
+    public List<Animal> getA(){
+        return A;
+    }
+    public List<Grass> getG(){
+        return G;
+    }
+    public Map<Vector2d, Animal> getAnimals(){
+        return animals;
+    }
+
     public GrassField(int n){
         boolean er;
         grassNo = n;
@@ -42,7 +54,7 @@ public class GrassField extends AbstractWorldMap{
         int miny=Integer.MAX_VALUE;
         int maxx=Integer.MIN_VALUE;
         int maxy=Integer.MIN_VALUE;
-        for(Animal a:A){
+        for(Animal a: animals.values()){
             minx = Math.min(minx,a.getPosition().x);
             miny = Math.min(miny,a.getPosition().y);
             maxx = Math.max(maxx,a.getPosition().x);
@@ -58,7 +70,7 @@ public class GrassField extends AbstractWorldMap{
         return Border;
     }
 
-    void getNewGrass(Vector2d position){
+    void makeNewGrass(Vector2d position){
         for(int i=0;i<G.size();i++){
             if(G.get(i).getPosition().equals(position)){
                 G.remove(i);
@@ -86,27 +98,55 @@ public class GrassField extends AbstractWorldMap{
 
     @Override
     public boolean canMoveTo(Vector2d position) {
+        if(objectAt(position) instanceof Animal)
+            return false;
         if(objectAt(position) instanceof Grass){
-            getNewGrass(position);
+            makeNewGrass(position);
         }
         return !isOccupied(position) || (isOccupied(position) && !(objectAt(position) instanceof Animal));
     }
 
 
-//
-//    @Override
-//    public boolean isOccupied(Vector2d position) {
-//        for(Grass grass:G){
-//            if(grass.getPosition().equals(position))   return true;
-//        }
-//        return false;
-//    }
-//
-//    @Override
-//    public Object objectAt(Vector2d position) {
-//        for(Grass obj:G){
-//            if(obj.getPosition().equals(position))   return obj;
-//        }
-//        return null;
-//    }
+    @Override
+    public boolean positionChanged(Vector2d oldPosition, Vector2d newPosition) {
+        if (canMoveTo(newPosition)) {
+            animals.put(newPosition, animals.get(oldPosition));
+            animals.remove(oldPosition);
+            return true;
+        }
+        return false;
+    }
+
+
+    @Override
+    public boolean place(Animal animal) {
+        Vector2d pos = animal.getPosition();
+        if (canMoveTo(pos)) {
+            animals.put(pos, animal);
+            A.add(animal);
+            animal.addObserver(this);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean isOccupied(Vector2d position) {
+        if(animals.get(position) != null)
+            return true;
+        for(Grass obj:G){
+            if(obj.getPosition().equals(position))   return true;
+        }
+        return false;
+    }
+
+    @Override
+    public Object objectAt(Vector2d position) {
+        if(animals.get(position) != null)
+            return animals.get(position);
+        for(Grass obj:G){
+            if(obj.getPosition().equals(position))   return obj;
+        }
+        return null;
+    }
 }

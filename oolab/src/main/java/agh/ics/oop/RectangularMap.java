@@ -1,7 +1,7 @@
 package agh.ics.oop;
 import java.util.ArrayList;
 import java.util.List;
-
+/*
 public class RectangularMap extends AbstractWorldMap{
 //    public int width=5;
 //    public int height=5;
@@ -22,7 +22,7 @@ public class RectangularMap extends AbstractWorldMap{
         int miny=Integer.MAX_VALUE;
         int maxx=Integer.MIN_VALUE;
         int maxy=Integer.MIN_VALUE;
-        for(Animal a:A){
+        for(Animal a: animals.values()){
             minx = Math.min(minx,a.getPosition().x);
             miny = Math.min(miny,a.getPosition().y);
             maxx = Math.max(maxx,a.getPosition().x);
@@ -54,4 +54,4 @@ public class RectangularMap extends AbstractWorldMap{
 //        }
 //        return null;
 //    }
-}
+}*/

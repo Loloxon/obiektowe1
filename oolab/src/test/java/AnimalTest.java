@@ -51,6 +51,7 @@ public class AnimalTest {
         s[3]="l";
         Assertions.assertEquals(OptionsParser.parse(s),ans);
     }*/
+    /*
     @Test
     public void AnimalsTest(){
         ArrayList<MoveDirection> directions = OptionsParser.parse(new String[]{"f", "b", "r", "l", "f", "f", "r", "r", "f", "f", "b", "f", "f", "b", "f", "l", "f", "f", "r"});
@@ -70,5 +71,5 @@ public class AnimalTest {
         assertEquals(testObjects.get(0).getDir(), MapDirection.NORTH);
         assertEquals(testObjects.get(1).getDir(), MapDirection.EAST);
         assertEquals(testObjects.get(2).getDir(), MapDirection.EAST);
-    }
+    }*/
 }

@@ -2,6 +2,8 @@ package agh.ics.oop;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SimulationEngine implements IEngine{
     ArrayList<MoveDirection> moves;
@@ -21,17 +23,23 @@ public class SimulationEngine implements IEngine{
     @Override
     public void run(){
         int id=0;
-        GrassField rmap = (GrassField) map;
-        List<Animal> A = rmap.getA();
-        System.out.println(rmap);
-        for(MoveDirection move:moves){
-            A.get(id).move(move);
-            System.out.println(move);
-            System.out.println(id);
-            System.out.println(rmap);
-            id+=1;
-            id%=A.size();
+        GrassField gmap = (GrassField) map;
+        Map<Vector2d, Animal> animals = gmap.getAnimals();
+        List<Animal> A = gmap.getA();
+        System.out.println(gmap);
+        while(id<moves.size()){
+//            for(Animal i:animals.values()){
+            for(Animal i:A){
+                if(id>=moves.size())
+                    break;
+                i.move(moves.get(id));
+                System.out.println(moves.get(id));
+                System.out.println(i);
+                System.out.println(id);
+                System.out.println(gmap);
+                id+=1;
+            }
         }
-        map = rmap;
+        map = gmap;
     }
 }

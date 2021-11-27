@@ -1,4 +1,5 @@
 package agh.ics.oop;
+import java.lang.Math;
 
 public class Vector2d{
     public final int x;
@@ -46,6 +47,13 @@ public class Vector2d{
             Vector2d that = (Vector2d) other;
             return (this.x == that.x && this.y == that.y);
         }
+    }
+    @Override
+    public int hashCode() {
+//        return (this.x * 1000 + this.y);
+//        return Vector2d.hash(this.x, this.y);
+        int tmp = (this.y+((this.x+1)/2));
+        return this.x + (tmp * tmp);
     }
     public Vector2d opposite(){
         Vector2d tmp = new Vector2d(-this.x, -this.y);
