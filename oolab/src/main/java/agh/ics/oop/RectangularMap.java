@@ -54,4 +54,5 @@ public class RectangularMap extends AbstractWorldMap{
 //        }
 //        return null;
 //    }
-}*/
+}
+*/
