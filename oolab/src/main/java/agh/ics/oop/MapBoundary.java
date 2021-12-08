@@ -13,7 +13,7 @@ public class MapBoundary implements IPositionChangeObserver{
         objectsY.add(object);
     }
 
-    Vector2d getLL(){
+    public Vector2d getLL(){
         Collections.sort(objectsX,new cartOrdX());
         Collections.sort(objectsY,new cartOrdY());
         if((objectsX.get(0) instanceof Animal || objectsX.get(0) instanceof Grass) && (objectsY.get(0) instanceof Animal || objectsY.get(0) instanceof Grass))
@@ -21,7 +21,7 @@ public class MapBoundary implements IPositionChangeObserver{
         else
             throw new IllegalArgumentException("LL untypical");
     }
-    Vector2d getUR(){
+    public Vector2d getUR(){
         Collections.sort(objectsX,new cartOrdX());
         Collections.sort(objectsY,new cartOrdY());
         int end = objectsX.size()-1;

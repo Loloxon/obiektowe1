@@ -28,12 +28,12 @@ public class GrassField extends AbstractWorldMap{
         for(int i=0; i<grassNo; i++){
             er = false;
             Random rand = new Random();
-            int x = 0;
-            int y = 0;
+            int x = 1;
+            int y = 1;
             while(!er) {
                 er = true;
-                x = rand.nextInt((int) Math.ceil(Math.sqrt(grassNo * 10)));
-                y = rand.nextInt((int) Math.ceil(Math.sqrt(grassNo * 10)));
+                x = rand.nextInt((int) Math.ceil(Math.sqrt(grassNo * 10))+1);
+                y = rand.nextInt((int) Math.ceil(Math.sqrt(grassNo * 10))+1);
                 for (Grass vec : G) {
                     if (vec.getPosition().equals(new Vector2d(x, y))) {
                         er = false;
