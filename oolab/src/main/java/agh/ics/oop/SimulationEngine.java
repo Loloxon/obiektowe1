@@ -61,7 +61,7 @@ public class SimulationEngine implements IEngine, Runnable{
                 id+=1;
             }
             try {
-                Thread.sleep(300);
+                Thread.sleep(moveDelay);
             } catch (InterruptedException ex) {
                 System.out.println(ex);
             }

@@ -68,7 +68,7 @@ class cartOrdX implements Comparator<Object> {
             else
                 return ((IMapElement) a).getPosition().x-((IMapElement) b).getPosition().x;
         }
-        return 0;
+        return 1;
     }
 }
 
@@ -88,7 +88,7 @@ class cartOrdY implements Comparator<Object> {
             else
                 return ((IMapElement) a).getPosition().y-((IMapElement) b).getPosition().y;
         }
-        return 0;
+        return 1;
     }
 }
 

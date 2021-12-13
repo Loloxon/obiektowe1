@@ -2,7 +2,6 @@ import agh.ics.oop.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -11,8 +10,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class GrassFieldTest {
     @Test
     public void GrassFieldTest() {
-        String[] S = {"f f r b f"};
-        ArrayList<MoveDirection> directions = new OptionsParser().parse(List.of(S));
+        String S = "f f r b f";
+        ArrayList<MoveDirection> directions = new OptionsParser().parse(S);
         GrassField map = new GrassField(10);
         Vector2d[] positions = {new Vector2d(2, 2), new Vector2d(3, 4)};
         IEngine engine = new SimulationEngine(map, positions);
