@@ -5,13 +5,14 @@ import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SimulationEngine implements IEngine{
+public class SimulationEngine implements IEngine, Runnable{
     ArrayList<MoveDirection> moves;
     IWorldMap map;
     Vector2d[] startpos;
     List<Animal> A;
     List<Grass> G;
     GrassField gmap;
+    int moveDelay=300;
     public List<Animal> getA(){
         return A;
     }
@@ -22,11 +23,16 @@ public class SimulationEngine implements IEngine{
         Vector2d[] Border = {gmap.bond.getLL(),gmap.bond.getUR()};
         return Border;
     }
-    public SimulationEngine(ArrayList<MoveDirection> moves, IWorldMap map, Vector2d[] startpos){
-    this.moves = moves;
-    this.map = map;
-    this.startpos = startpos;
-    addAnimals();
+    public void setDirections(ArrayList<MoveDirection> directions){this.moves = directions;}
+    public SimulationEngine(IWorldMap map, Vector2d[] startpos){
+//    this.moves = moves;
+        this.map = map;
+        gmap = (GrassField) map;
+        Map<Vector2d, Animal> animals = gmap.getAnimals();
+        A = gmap.getA();
+        G = gmap.getG();
+        this.startpos = startpos;
+        addAnimals();
     }
     public void addAnimals() {
         for (Vector2d ps : startpos) {
@@ -34,12 +40,10 @@ public class SimulationEngine implements IEngine{
         }
     }
     @Override
-    public void run(){
+    public void run()  {
+        System.out.println("Thread started.");
         int id=0;
-        gmap = (GrassField) map;
-        Map<Vector2d, Animal> animals = gmap.getAnimals();
-        A = gmap.getA();
-        G = gmap.getG();
+
         System.out.println(gmap);
         while(id<moves.size()){
 //            for(Animal i:animals.values()){
@@ -47,11 +51,19 @@ public class SimulationEngine implements IEngine{
                 if(id>=moves.size())
                     break;
                 i.move(moves.get(id));
+//                if(gmap.update){
+//
+//                }
                 System.out.println(moves.get(id));
                 System.out.println(i);
                 System.out.println(id);
                 System.out.println(gmap);
                 id+=1;
+            }
+            try {
+                Thread.sleep(300);
+            } catch (InterruptedException ex) {
+                System.out.println(ex);
             }
         }
         map = gmap;

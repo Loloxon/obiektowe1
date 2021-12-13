@@ -3,24 +3,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OptionsParser {
-    public static ArrayList<MoveDirection> parse(List<String> args){
+    public static ArrayList<MoveDirection> parse(String args){
         ArrayList<MoveDirection>A=new ArrayList<>();
-        for(String arg:args){
-            switch (arg) {
-                case "f", "forward":
+        for(int i=0;i<args.length();i++){
+            switch (args.charAt(i)) {
+                case 'f':
                     A.add(MoveDirection.FORWARD);
                     break;
-                case "b", "backward":
+                case 'b':
                     A.add(MoveDirection.BACKWARD);
                     break;
-                case "r", "right":
+                case 'r':
                     A.add(MoveDirection.RIGHT);
                     break;
-                case "l", "left":
+                case 'l':
                     A.add(MoveDirection.LEFT);
                     break;
+                case ' ':
+                    break;
                 default:
-                    throw new IllegalArgumentException(arg + " is not legal move specification");
+                    throw new IllegalArgumentException(args.charAt(i) + " is not legal move specification");
             }
         }
         return A;

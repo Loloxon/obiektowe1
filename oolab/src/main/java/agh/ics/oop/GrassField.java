@@ -7,6 +7,7 @@ public class GrassField extends AbstractWorldMap{
     protected Map<Vector2d, Animal> animals = new HashMap<>();
     protected List<Grass> G = new ArrayList<>();
     protected List<Animal> A = new ArrayList<>();
+    public boolean update = false;
 
     MapBoundary bond = new MapBoundary();
 
@@ -79,6 +80,7 @@ public class GrassField extends AbstractWorldMap{
     void makeNewGrass(Vector2d position){
         for(int i=0;i<G.size();i++){
             if(G.get(i).getPosition().equals(position)){
+                bond.deleteG(G.get(i));
                 G.remove(i);
                 boolean er;
                 er = false;
@@ -119,8 +121,10 @@ public class GrassField extends AbstractWorldMap{
         if (canMoveTo(newPosition)) {
             animals.put(newPosition, animals.get(oldPosition));
             animals.remove(oldPosition);
+            update = true;
             return true;
         }
+        update = true;
         return false;
     }
 

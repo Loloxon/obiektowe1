@@ -6,4 +6,5 @@ public interface IMapElement {
     // zwraca pozycje
     String toString();
     // wyswietlanie (kierunek zwierzaka/kępka trawy)
+    String getImage();
 }
