@@ -1,12 +1,13 @@
 package agh.ics.oop;
 import java.lang.Math;
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class GrassField extends AbstractWorldMap{
     private int grassNo;
     protected Map<Vector2d, Animal> animals = new HashMap<>();
-    protected List<Grass> G = new ArrayList<>();
-    protected List<Animal> A = new ArrayList<>();
+    protected List<Grass> G = new CopyOnWriteArrayList<>();
+    protected List<Animal> A = new CopyOnWriteArrayList<>();
     public boolean update = false;
 
     MapBoundary bond = new MapBoundary();

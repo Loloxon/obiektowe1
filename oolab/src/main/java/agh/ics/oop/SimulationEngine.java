@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class SimulationEngine implements IEngine, Runnable{
     ArrayList<MoveDirection> moves;
     IWorldMap map;
     Vector2d[] startpos;
-    List<Animal> A;
-    List<Grass> G;
+    List<Animal> A = new CopyOnWriteArrayList<>();
+    List<Grass> G = new CopyOnWriteArrayList<>();
     GrassField gmap;
     int moveDelay=300;
     public List<Animal> getA(){
@@ -44,7 +45,7 @@ public class SimulationEngine implements IEngine, Runnable{
         System.out.println("Thread started.");
         int id=0;
 
-        System.out.println(gmap);
+//        System.out.println(gmap);
         while(id<moves.size()){
 //            for(Animal i:animals.values()){
             for(Animal i:A){
@@ -54,9 +55,9 @@ public class SimulationEngine implements IEngine, Runnable{
 //                if(gmap.update){
 //
 //                }
-                System.out.println(moves.get(id));
-                System.out.println(i);
-                System.out.println(id);
+//                System.out.println(moves.get(id));
+//                System.out.println(i);
+//                System.out.println(id);
                 System.out.println(gmap);
                 id+=1;
             }

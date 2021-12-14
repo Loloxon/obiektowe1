@@ -14,11 +14,12 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 
 public class App extends Application {
-    List<Animal> A;
-    List<Grass> G;
+    List<Animal> A = new CopyOnWriteArrayList<>();
+    List<Grass> G = new CopyOnWriteArrayList<>();
     Vector2d[] positions = new Vector2d[2];
     Vector2d[] Border;
     int xs;
